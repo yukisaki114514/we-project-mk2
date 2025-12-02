@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Wired OS - Critical Synchronization</title>
+    
+    <link rel="stylesheet" href="wired_ui.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="desktop">
+        <div id="noise-overlay"></div>
+
+        <div id="status-bar">
+            <span>SYNCHRONIZATION IN PROGRESS</span>
+            <span id="current-time">00:00:00</span>
+            <span id="wired-status" class="active">CRITICAL</span>
+        </div>
+
+        <div class="icon" id="profile-icon" data-file-id="01_profile">
+            <div class="icon-box">P</div>
+            <span>PROFILE</span>
+        </div>
+        <div class="icon" id="skills-icon" data-file-id="02_skills">
+            <div class="icon-box">S</div>
+            <span>SKILLS</span>
+        </div>
+        <div class="icon" id="works-icon" data-file-id="03_works">
+            <div class="icon-box">W</div>
+            <span>WORKS</span>
+        </div>
+        <div class="icon" id="contact-icon" data-file-id="04_contact">
+            <div class="icon-box">@</div>
+            <span>CONTACT</span>
+        </div>
+        <div class="icon" id="philosophy-icon" data-file-id="05_philosophy">
+            <div class="icon-box">L</div>
+            <span>PROTOCOL</span>
+        </div>
+        
+        <div id="window-container"></div>
+
+    </div>
+    
+    <div id="flash-target"></div>
+
+    <audio id="bgm" loop>
+        <source src="ambient_noise.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="click-sound">
+        <source src="electronic_click.wav.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="wired_logic.js"></script>
+</body>
