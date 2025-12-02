@@ -1,0 +1,229 @@
+/*=====================================
+  基本設定とフォント
+======================================*/
+:root {
+    /* メインカラーをネオンブルーに変更 */
+    --main-color: #00FFFF; /* ネオンブルー */
+    /* サブカラーをネオングリーンに設定 */
+    --sub-color: #0A5; 
+    /* 背景色 */
+    --background-color: #000;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--main-color); 
+    font-family: 'VT323', monospace;
+    margin: 0;
+    overflow: hidden; 
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none; 
+    cursor: crosshair; 
+}
+
+/*=====================================
+  デスクトップ画面 (メインコンテナ)
+======================================*/
+#desktop {
+    width: 800px;
+    height: 600px;
+    background-color: #080808; 
+    border: 3px solid var(--main-color);
+    /* ブルーの発光エフェクトに、サブのグリーンを混ぜる */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 35px var(--sub-color);
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden; 
+    /* 不気味さを強めるため、グリッチを頻繁に */
+    animation: reality-glitch 5s infinite linear; 
+}
+
+/* 現実の不安定さを表現するアニメーション（強化） */
+@keyframes reality-glitch {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(1px, -1px); } /* ズレを大きく */
+    20% { transform: translate(-1px, 1px); }
+    30% { transform: translate(0, 0); }
+    40% { filter: hue-rotate(10deg); } /* 色相をわずかに変化 */
+    90% { transform: translate(-0.5px, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+/*=====================================
+  ステータスバー
+======================================*/
+#status-bar {
+    background-color: var(--main-color);
+    color: var(--background-color);
+    padding: 4px 8px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--background-color);
+}
+
+#wired-status.active {
+    animation: blink-status 0.5s steps(1) infinite; /* 点滅速度を上げる */
+}
+
+@keyframes blink-status {
+    0% { opacity: 1; }
+    50% { opacity: 0.1; }
+    100% { opacity: 1; }
+}
+
+/*=====================================
+  アイコンとナビゲーション
+======================================*/
+.icon {
+    width: 70px;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    position: absolute; 
+    left: 15px;
+}
+
+.icon-box {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--main-color);
+    background-color: var(--background-color);
+    margin: 0 auto 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    animation: icon-flicker 2s infinite steps(1); /* チラつきを早く */
+}
+
+@keyframes icon-flicker {
+    0%, 70% { opacity: 1; }
+    75%, 76% { opacity: 0.4; } /* 瞬間的に暗く */
+    80%, 81% { border-color: var(--sub-color); } /* 一瞬色が変わる */
+    100% { opacity: 1; border-color: var(--main-color); }
+}
+
+/* アイコンの配置（HTMLのIDに対応） */
+#profile-icon    { top: 50px; }
+#skills-icon    { top: 130px; }
+#works-icon { top: 210px; }
+#contact-icon   { top: 290px; }
+#philosophy-icon   { top: 370px; }
+
+
+/*=====================================
+  ウィンドウ
+======================================*/
+.window {
+    position: absolute;
+    width: 420px;
+    background-color: var(--background-color);
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px 0px rgba(0, 255, 255, 0.4);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+}
+
+.window-title-bar {
+    background-color: var(--main-color);
+    color: var(--background-color);
+    padding: 4px 8px;
+    cursor: grab;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.window-content {
+    padding: 15px;
+    font-size: 16px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-y: auto;
+    color: #ccc; 
+    animation: content-flicker 3s infinite steps(1); 
+}
+
+@keyframes content-flicker {
+    0%, 70% { opacity: 1; text-shadow: none; }
+    75% { opacity: 0.95; text-shadow: 0 0 1px var(--sub-color); } 
+    80% { opacity: 1; text-shadow: none; }
+    90% { opacity: 0.9; }
+    100% { opacity: 1; }
+}
+
+.close-btn {
+    color: var(--background-color);
+    border: 1px solid var(--background-color);
+    padding: 0 5px;
+    cursor: pointer;
+    font-family: sans-serif;
+    background: #fff;
+    line-height: 1;
+}
+
+/*=====================================
+  ノイズと特殊演出
+======================================*/
+#noise-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; 
+    opacity: 0.3; /* ノイズを濃くする */
+    z-index: 999;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAD0lEQVQIW2NkYGDYw8DAwAAABQAAAfv9/1QAAAAASUVORK5CYII=');
+    animation: noise-shift 0.05s infinite steps(1); /* ノイズの動きを速く */
+}
+
+@keyframes noise-shift {
+    0% { background-position: 0 0; }
+    100% { background-position: 10px 10px; }
+}
+
+.flash-effect {
+    /* フラッシュをブルーに変更 */
+    background-color: var(--main-color); 
+    /* 他はそのまま */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0;
+    z-index: 1000;
+    animation: flash 0.1s ease-out;
+}
+
+@keyframes flash {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/*=====================================
+  非線形リンク
+======================================*/
+.nonlinear-link {
+    color: #FF0000; 
+    background-color: rgba(255, 0, 0, 0.2);
+    text-decoration: none;
+    padding: 0 2px;
+    border: 1px dashed #FF0000;
+    cursor: pointer;
+    animation: link-warning 0.5s infinite steps(1); /* 点滅を速く */
+}
+
+@keyframes link-warning {
+    0% { background-color: rgba(255, 0, 0, 0.2); }
+    50% { background-color: rgba(255, 255, 0, 0.3); }
+    100% { background-color: rgba(255, 0, 0, 0.2); }
+}
